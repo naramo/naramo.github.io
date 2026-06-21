@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>VAMOS — Travel Together, Effortlessly.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pur:#7F00FF;
+  --pur2:#9933FF;
+  --pur3:rgba(127,0,255,0.12);
+  --org:#FF5C00;
+  --org2:rgba(255,92,0,0.1);
+  --dk:#0C0C0F;
+  --dk2:#111116;
+  --dk3:#18181E;
+  --dk4:#1E1E26;
+  --bd:rgba(255,255,255,0.07);
+  --bd2:rgba(255,255,255,0.12);
+  --txt:rgba(255,255,255,1);
+  --txt2:rgba(255,255,255,0.5);
+  --txt3:rgba(255,255,255,0.25);
+  --grn:#00C264;
+  --r:14px;
+  --r2:20px;
+}
+html,body{width:1440px;min-height:1024px;background:#050508;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;color:#fff}
+
+/* ── UTILS ── */
+.bc{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase}
+.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--txt3);font-weight:500}
+.screen{display:none;width:1440px;min-height:1024px}
+.screen.active{display:flex}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--pur);color:#fff;border:none;border-radius:12px;
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
+  padding:16px 28px;cursor:pointer;transition:background .18s,transform .12s;
+  white-space:nowrap;
+}
+.btn:hover{background:#6800d6;transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn.wide{width:100%}
+.btn.grn{background:var(--grn)}
+.btn.grn:hover{background:#009E50}
+.btn-ghost{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:transparent;border:1px solid rgba(255,255,255,0.14);color:var(--txt2);
+  border-radius:12px;font-family:'Inter',sans-serif;font-size:14px;
+  padding:16px 28px;cursor:pointer;transition:all .18s;white-space:nowrap;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.3);color:#fff}
+
+/* ── FORM ── */
+.field{margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
+.field input,.field select{
+  width:100%;background:rgba(255,255,255,0.05);
+  border:1px solid var(--bd);border-radius:12px;
+  color:#fff;font-family:'Inter',sans-serif;font-size:14px;
+  padding:14px 18px;outline:none;transition:border-color .18s,background .18s;
+  -webkit-appearance:none;
+}
+.field input:focus,.field select:focus{border-color:var(--pur);background:rgba(127,0,255,0.07)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.field select option{background:#1c1c24;color:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+
+/* ══════════════════════════════
+   SCREEN 1 — LOGIN
+══════════════════════════════ */
+#s-login{flex-direction:row}
+
+.login-left{
+  width:580px;flex-shrink:0;
+  background:var(--dk2);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 72px;
+  border-right:1px solid var(--bd);
+}
+.login-right{
+  flex:1;position:relative;overflow:hidden;
+}
+.login-right img{
+  width:100%;height:100%;object-fit:cover;
+}
+.login-right-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg, var(--dk2) 0%, transparent 45%);
+}
+.login-brand-block{
+  position:absolute;bottom:0;left:0;right:0;
+  background:var(--pur);
+  padding:32px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.login-brand-block p{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:26px;text-transform:uppercase;
+  letter-spacing:-0.5px;color:#fff;
+}
+.login-brand-block span{font-size:12px;color:rgba(255,255,255,0.55);letter-spacing:2px;text-transform:uppercase}
+
+.vlogo{display:flex;align-items:center;gap:12px;margin-bottom:60px}
+.vlogo-mark{
+  width:36px;height:36px;background:var(--pur);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+}
+.vlogo-mark i{font-size:18px;color:#fff}
+.vlogo-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:22px;letter-spacing:3px;color:#fff;
+}
+.login-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:56px;line-height:0.95;
+  text-transform:uppercase;letter-spacing:-1.5px;
+  margin-bottom:8px;
+}
+.login-title em{color:var(--pur);font-style:normal}
+.login-sub{font-size:14px;color:var(--txt2);margin-bottom:44px;font-weight:300;line-height:1.6}
+.login-form{max-width:380px}
+.login-footer{margin-top:24px;font-size:12px;color:var(--txt3);text-align:center}
+.login-footer a{color:var(--pur2);cursor:pointer;text-decoration:none}
+
+/* ══════════════════════════════
+   ONBOARDING SHARED
+══════════════════════════════ */
+.ob-wrap{
+  width:100%;flex-direction:column;background:var(--dk);
+}
+.ob-navbar{
+  width:100%;height:64px;background:var(--dk2);
+  border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;flex-shrink:0;
+}
+.ob-progress-track{
+  display:flex;gap:6px;align-items:center;
+}
+.ob-seg{
+  height:3px;border-radius:2px;background:rgba(255,255,255,0.1);
+  transition:all .4s ease;
+}
+.ob-seg.done{background:var(--pur)}
+.ob-seg.active{background:var(--pur2);width:56px !important}
+.ob-step-counter{font-size:11px;color:var(--txt3);letter-spacing:1.5px;margin-left:12px}
+
+.ob-body-wrap{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:48px 0;
+}
+.ob-inner{width:600px}
+.ob-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pur2);margin-bottom:12px}
+.ob-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:48px;text-transform:uppercase;
+  letter-spacing:-1px;line-height:1;margin-bottom:6px;
+}
+.ob-sub{font-size:14px;color:var(--txt2);margin-bottom:32px;font-weight:300;line-height:1.6}
+.ob-card{
+  background:var(--dk2);border:1px solid var(--bd);
+  border-radius:var(--r2);padding:28px;margin-bottom:16px;
+}
+.ob-hint{
+  background:rgba(127,0,255,0.07);border:1px solid rgba(127,0,255,0.18);
+  border-radius:14px;padding:16px 20px;
+  display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;
+}
+.ob-hint i{font-size:18px;color:var(--pur2);flex-shrink:0;margin-top:1px}
+.ob-hint p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6}
+.ob-actions{display:flex;gap:12px;margin-top:8px}
+.ob-actions .btn{flex:1}
+
+/* pref cards */
+.pref-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.pref-card{
+  background:rgba(255,255,255,0.03);border:1px solid var(--bd);
+  border-radius:12px;padding:18px 16px;cursor:pointer;
+  transition:all .2s;text-align:center;
+}
+.pref-card:hover{border-color:rgba(127,0,255,0.35);background:rgba(127,0,255,0.05)}
+.pref-card.sel{border-color:var(--pur);background:rgba(127,0,255,0.12)}
+.pref-card i{font-size:22px;color:var(--txt2);display:block;margin-bottom:8px}
+.pref-card.sel i{color:var(--pur2)}
+.pref-card span{font-size:13px;color:rgba(255,255,255,0.55)}
+.pref-card.sel span{color:#fff;font-weight:500}
+.pref-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:10px;margin-top:4px}
+
+/* ══════════════════════════════
+   SCREEN 5 — DASHBOARD
+══════════════════════════════ */
+#s-dash{flex-direction:row}
+
+/* sidebar */
+.sidebar{
+  width:80px;flex-shrink:0;
+  background:var(--dk2);
+  border-right:1px solid var(--bd);
+  display:flex;flex-direction:column;
+  align-items:center;
+  padding:24px 0;
+  gap:4px;
+}
+.sb-logo{
+  width:40px;height:40px;background:var(--pur);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;
+  color:#fff;letter-spacing:1px;margin-bottom:24px;
+  flex-shrink:0;
+}
+.ni{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.28);cursor:pointer;
+  transition:all .2s;font-size:20px;
+  position:relative;
+}
+.ni:hover{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.65)}
+.ni.active{background:rgba(127,0,255,0.16);color:var(--pur2)}
+.ni[data-label]:hover::after{
+  content:attr(data-label);
+  position:absolute;left:60px;
+  background:var(--dk4);border:1px solid var(--bd);
+  border-radius:8px;padding:5px 10px;font-size:12px;
+  color:#fff;white-space:nowrap;pointer-events:none;
+  font-family:'Inter',sans-serif;font-weight:500;
+  z-index:100;
+}
+
+/* main content */
+.dash-main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--dk)}
+.dash-topbar{
+  height:64px;flex-shrink:0;
+  background:var(--dk2);border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 36px;
+}
+.dash-topbar-left{display:flex;align-items:center;gap:6px}
+.dash-greeting{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--txt3)}
+.dash-name{font-size:15px;font-weight:600;color:#fff}
+.dash-topbar-right{display:flex;align-items:center;gap:16px}
+.dash-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--pur);display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;color:#fff;
+}
+
+.dash-scroll{flex:1;overflow-y:auto;padding:32px 36px}
+
+/* hero */
+.d-hero{
+  position:relative;border-radius:var(--r2);overflow:hidden;
+  height:300px;margin-bottom:24px;cursor:pointer;
+}
+.d-hero img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.d-hero:hover img{transform:scale(1.03)}
+.d-hero-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(12,12,15,0.95) 30%, rgba(12,12,15,0.2) 100%);
+  display:flex;align-items:center;padding:0 52px;
+}
+.d-hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--org);border-radius:5px;
+  padding:4px 12px;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:#fff;margin-bottom:14px;font-weight:600;
+}
+.d-dest{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:72px;
+  text-transform:uppercase;letter-spacing:-2px;
+  line-height:0.9;margin-bottom:10px;
+}
+.d-dest span{color:var(--pur2)}
+.d-dates{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:20px;letter-spacing:0.3px}
+.cd-row{display:flex;gap:24px;align-items:flex-end}
+.cd-unit .cd-n{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:36px;color:var(--pur2);line-height:1;
+}
+.cd-unit .cd-l{font-size:10px;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.cd-sep{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:28px;color:var(--txt3);padding-bottom:6px}
+
+/* stat strip */
+.stat-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--bd);border-radius:var(--r2);
+  overflow:hidden;margin-bottom:24px;
+  background:var(--dk2);
+}
+.stat-cell{
+  padding:20px 24px;border-right:1px solid var(--bd);
+  cursor:pointer;transition:background .2s;
+}
+.stat-cell:last-child{border-right:none}
+.stat-cell:hover{background:rgba(255,255,255,0.03)}
+.stat-lbl{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--txt3);margin-bottom:8px;
+  display:flex;align-items:center;gap:7px;
+}
+.stat-lbl i{font-size:14px;color:var(--pur)}
+.stat-val{font-size:18px;font-weight:600;margin-bottom:3px;letter-spacing:-0.3px}
+.stat-sub{font-size:12px;color:var(--txt2)}
+
+/* main grid */
+.dash-grid{
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:24px;
+}
+.dash-col-left{}
+.dash-col-right{}
+
+.dk-card{
+  background:var(--dk2);border:1px solid var(--bd);
+  border-radius:var(--r2);padding:22px 24px;
+  margin-bottom:20px;transition:border-color .22s,transform .22s;
+}
+.dk-card:hover{border-color:rgba(127,0,255,0.28);transform:translateY(-2px)}
+.dk-card-hd{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:18px;
+}
+.dk-card-label{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--txt3);display:flex;align-items:center;gap:7px;
+}
+.dk-card-label i{font-size:14px;color:var(--pur)}
+
+/* flight card */
+.flight-strip{display:flex;gap:10px;margin-top:8px}
+.fbox{
+  flex:1;background:rgba(255,255,255,0.04);border-radius:10px;
+  padding:12px 14px;
+}
+.fbox .ft{font-size:10px;color:var(--txt3);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.fbox .fv{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:24px;letter-spacing:0.5px;
+}
+.fbox .fs{font-size:11px;color:var(--txt2);margin-top:2px}
+.farrow{display:flex;align-items:center;color:var(--txt3);font-size:20px;padding-top:16px}
+
+.badge-grn{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(0,194,100,0.1);border:1px solid rgba(0,194,100,0.22);
+  color:#4DFFA0;border-radius:20px;padding:3px 10px;font-size:11px;
+  font-weight:500;
+}
+.badge-grn-dot{width:5px;height:5px;border-radius:50%;background:#4DFFA0}
+.badge-org{
+  background:var(--org);border-radius:5px;
+  padding:3px 9px;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:#fff;font-weight:600;
+}
+
+/* hotel card */
+.hotel-row{display:flex;gap:10px;margin-top:8px}
+.hbox{flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:12px 14px}
+.hbox .ht{font-size:10px;color:var(--txt3);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.hbox .hv{font-size:15px;font-weight:600}
+
+/* activities */
+.act-grid{display:flex;gap:12px;margin-top:4px;overflow-x:auto;padding-bottom:4px}
+.act-card{
+  min-width:200px;height:120px;border-radius:14px;
+  overflow:hidden;position:relative;cursor:pointer;flex-shrink:0;
+}
+.act-card img{width:100%;height:100%;object-fit:cover;filter:brightness(0.65);transition:transform .35s}
+.act-card:hover img{transform:scale(1.07)}
+.act-card-lbl{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:24px 14px 12px;
+  background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 100%);
+  font-size:13px;font-weight:600;
+}
+
+/* roommate card */
+.rm-row{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.rm-av{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid rgba(127,0,255,0.4)}
+.rm-cta{
+  background:var(--pur);border-radius:12px;padding:16px 18px;
+  cursor:pointer;transition:background .18s;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.rm-cta:hover{background:#6800d6}
+.rm-cta p{font-size:14px;font-weight:600;margin-bottom:2px}
+.rm-cta span{font-size:11px;color:rgba(255,255,255,0.6)}
+
+/* group stats */
+.gstat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.gstat-box{
+  border-radius:12px;padding:14px 16px;text-align:center;
+}
+.gstat-box.pur{background:rgba(127,0,255,0.1);border:1px solid rgba(127,0,255,0.2)}
+.gstat-box.org{background:rgba(255,92,0,0.08);border:1px solid rgba(255,92,0,0.2)}
+.gstat-n{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:32px;line-height:1;margin-bottom:4px;
+}
+.gstat-n.pur{color:var(--pur2)}
+.gstat-n.org{color:var(--org)}
+.gstat-l{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:1.5px}
+
+.progress-row{margin-bottom:12px}
+.progress-hd{display:flex;justify-content:space-between;font-size:11px;color:var(--txt3);margin-bottom:6px}
+.progress-hd span:last-child{color:#fff;font-weight:600}
+.progress-bar{height:4px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;border-radius:3px;background:var(--pur);transition:width .8s ease}
+
+.avatars-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.av-sm{
+  width:38px;height:38px;border-radius:50%;
+  object-fit:cover;border:2px solid var(--dk2);
+}
+.av-more{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--dk4);border:2px solid var(--dk2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--txt2);font-weight:600;
+}
+
+/* ══════════════════════════════
+   SCREEN 6 — ROOMMATES
+══════════════════════════════ */
+#s-rooms{flex-direction:row}
+.rooms-main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--dk)}
+.rooms-topbar{
+  height:64px;flex-shrink:0;
+  background:var(--dk2);border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 36px;
+}
+.back-btn{
+  display:flex;align-items:center;gap:7px;
+  background:transparent;border:none;
+  color:var(--txt2);font-family:'Inter',sans-serif;
+  font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+  cursor:pointer;padding:0;transition:color .18s;
+}
+.back-btn:hover{color:#fff}
+
+.rooms-scroll{flex:1;overflow-y:auto;padding:40px 36px}
+.rooms-header{margin-bottom:36px}
+.rooms-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:56px;text-transform:uppercase;
+  letter-spacing:-1.5px;line-height:0.9;margin-bottom:8px;
+}
+.rooms-title span{color:var(--pur2)}
+.rooms-sub{font-size:14px;color:var(--txt2);font-weight:300}
+
+.tc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tc{
+  background:var(--dk2);border:1px solid var(--bd);
+  border-radius:var(--r2);overflow:hidden;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+  cursor:pointer;
+}
+.tc:hover{
+  border-color:rgba(127,0,255,0.4);
+  transform:translateY(-4px);
+  box-shadow:0 16px 48px rgba(0,0,0,0.5);
+}
+.tc-img{position:relative;height:180px;overflow:hidden}
+.tc-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.75);transition:transform .35s}
+.tc:hover .tc-img img{transform:scale(1.06)}
+.tc-flag{
+  position:absolute;top:12px;right:12px;
+  background:rgba(0,0,0,0.6);border-radius:5px;
+  padding:3px 9px;font-size:12px;color:#fff;
+}
+.compat-bar-abs{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.1)}
+.compat-bar-fill{height:100%;background:var(--pur)}
+.tc-body{padding:18px 20px}
+.tc-name{font-size:16px;font-weight:600;margin-bottom:2px}
+.tc-country{font-size:12px;color:var(--txt2);margin-bottom:14px}
+.compat-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.compat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt3)}
+.compat-score{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:28px;color:var(--pur2);
+}
+.tags-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tag{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+  border-radius:4px;padding:3px 10px;font-size:11px;
+  color:rgba(255,255,255,0.45);letter-spacing:0.3px;
+}
+.req-btn{
+  width:100%;background:var(--pur);color:#fff;border:none;
+  border-radius:10px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
+  padding:13px;cursor:pointer;transition:all .18s;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.req-btn:hover{background:#6800d6}
+.req-btn.sent{
+  background:rgba(0,200,100,0.1);
+  border:1px solid rgba(0,200,100,0.22);
+  color:#4DFFA0;cursor:default;
+}
+
+/* ── MODAL ── */
+.modal-bg{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.75);
+  z-index:500;align-items:center;justify-content:center;
+  backdrop-filter:blur(6px);
+}
+.modal-bg.open{display:flex}
+.modal-box{
+  background:#13131C;border:1px solid rgba(255,255,255,0.1);
+  border-radius:24px;padding:48px 44px;
+  width:400px;text-align:center;
+  animation:slideup .3s cubic-bezier(.22,1,.36,1);
+}
+@keyframes slideup{
+  from{opacity:0;transform:translateY(20px) scale(0.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.modal-icon{
+  width:64px;height:64px;
+  background:rgba(0,200,100,0.1);border:1px solid rgba(0,200,100,0.25);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 22px;font-size:28px;color:#4DFFA0;
+}
+.modal-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:28px;text-transform:uppercase;
+  letter-spacing:0.5px;margin-bottom:10px;
+}
+.modal-text{font-size:14px;color:var(--txt2);line-height:1.7;margin-bottom:32px}
+.modal-close{
+  width:100%;padding:15px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;color:#fff;
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:500;
+  cursor:pointer;transition:background .18s;
+}
+.modal-close:hover{background:rgba(255,255,255,0.1)}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══ -->
+<div id="s-login" class="screen active">
+  <div class="login-left">
+    <div class="vlogo">
+      <div class="vlogo-mark"><i class="ti ti-hexagon-3d"></i></div>
+      <div class="vlogo-name">VAMOS</div>
+    </div>
+    <div class="login-title">Travel<br><em>Together.</em></div>
+    <div class="login-sub">Sign in to join your group adventure<br>and manage your trip in one place.</div>
+    <div class="login-form">
+      <div class="field"><label>Email</label><input type="email" value="sofia@mail.com" placeholder="you@travel.com"></div>
+      <div class="field"><label>Password</label><input type="password" value="password" placeholder="••••••••"></div>
+      <button class="btn wide" onclick="go('s-ob1')" style="margin-top:8px">
+        Continue <i class="ti ti-arrow-right"></i>
+      </button>
+    </div>
+    <p class="login-footer">New to VAMOS? <a onclick="go('s-ob1')">Join a trip →</a></p>
+  </div>
+  <div class="login-right">
+    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=85" alt="Paris">
+    <div class="login-right-overlay"></div>
+    <div class="login-brand-block">
+      <div>
+        <p>Group travel, beautifully organized.</p>
+        <span>Travel together, effortlessly.</span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div style="display:flex">
+          <img src="https://i.pravatar.cc/32?img=47" style="width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);margin-left:-8px;first-child{margin-left:0}" alt="">
+          <img src="https://i.pravatar.cc/32?img=32" style="width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);margin-left:-8px" alt="">
+          <img src="https://i.pravatar.cc/32?img=44" style="width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);margin-left:-8px" alt="">
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;margin-left:-8px">+15</div>
+        </div>
+        <span style="font-size:12px;color:rgba(255,255,255,0.65)">18 travelers · Jul 14</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ONBOARDING 1 ══ -->
+<div id="s-ob1" class="screen ob-wrap">
+  <div class="ob-navbar">
+    <div class="vlogo-name" style="font-size:16px;letter-spacing:3px">VAMOS</div>
+    <div class="ob-progress-track">
+      <div class="ob-seg active" style="width:56px"></div>
+      <div class="ob-seg" style="width:28px"></div>
+      <div class="ob-seg" style="width:28px"></div>
+      <span class="ob-step-counter">Step 1 of 3</span>
+    </div>
+    <div style="width:120px"></div>
+  </div>
+  <div class="ob-body-wrap">
+    <div class="ob-inner">
+      <div class="ob-eyebrow">Personal information</div>
+      <div class="ob-title">Who are you?</div>
+      <div class="ob-sub">We'll use this to introduce you to the group and match your preferences.</div>
+      <div class="ob-card">
+        <div class="grid2" style="margin-bottom:16px">
+          <div class="field"><label>First name</label><input type="text" value="Sofía"></div>
+          <div class="field"><label>Last name</label><input type="text" value="Restrepo"></div>
+        </div>
+        <div class="field" style="margin-bottom:16px"><label>Nationality</label>
+          <select>
+            <option>🇨🇴 Colombian</option>
+            <option>🇲🇽 Mexican</option>
+            <option>🇦🇷 Argentine</option>
+            <option>🇪🇸 Spanish</option>
+          </select>
+        </div>
+        <div class="grid2">
+          <div class="field"><label>Email</label><input type="email" value="sofia@mail.com"></div>
+          <div class="field"><label>Phone number</label><input type="tel" value="+57 310 482 9341"></div>
+        </div>
+      </div>
+      <div class="ob-actions">
+        <button class="btn-ghost" onclick="go('s-login')"><i class="ti ti-arrow-left"></i> Back</button>
+        <button class="btn" onclick="go('s-ob2')">Continue <i class="ti ti-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ONBOARDING 2 ══ -->
+<div id="s-ob2" class="screen ob-wrap">
+  <div class="ob-navbar">
+    <div class="vlogo-name" style="font-size:16px;letter-spacing:3px">VAMOS</div>
+    <div class="ob-progress-track">
+      <div class="ob-seg done" style="width:28px"></div>
+      <div class="ob-seg active" style="width:56px"></div>
+      <div class="ob-seg" style="width:28px"></div>
+      <span class="ob-step-counter">Step 2 of 3</span>
+    </div>
+    <div style="width:120px"></div>
+  </div>
+  <div class="ob-body-wrap">
+    <div class="ob-inner">
+      <div class="ob-eyebrow">Flight information</div>
+      <div class="ob-title">Your flight.</div>
+      <div class="ob-sub">Help the group coordinate airport arrivals and transfers seamlessly.</div>
+      <div class="ob-card">
+        <div class="grid2" style="margin-bottom:16px">
+          <div class="field"><label>Airline</label>
+            <select><option>Avianca</option><option>LATAM</option><option>American Airlines</option><option>Copa Airlines</option></select>
+          </div>
+          <div class="field"><label>Flight number</label><input type="text" value="AV 205"></div>
+        </div>
+        <div class="grid2">
+          <div class="field"><label>Departure airport</label>
+            <select>
+              <option>BOG — El Dorado, Bogotá</option>
+              <option>MDE — José M. Córdova, Medellín</option>
+              <option>CLO — Alfonso B. Aragón, Cali</option>
+            </select>
+          </div>
+          <div class="field"><label>Arrival airport</label>
+            <select>
+              <option>CDG — Charles de Gaulle, París</option>
+              <option>FCO — Leonardo da Vinci, Roma</option>
+              <option>BCN — El Prat, Barcelona</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="ob-hint">
+        <i class="ti ti-info-circle"></i>
+        <p>Your arrival time will be shared with the group coordinator to arrange airport transfers. This information is only visible to your trip organizer.</p>
+      </div>
+      <div class="ob-actions">
+        <button class="btn-ghost" onclick="go('s-ob1')"><i class="ti ti-arrow-left"></i> Back</button>
+        <button class="btn" onclick="go('s-ob3')">Continue <i class="ti ti-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ONBOARDING 3 ══ -->
+<div id="s-ob3" class="screen ob-wrap">
+  <div class="ob-navbar">
+    <div class="vlogo-name" style="font-size:16px;letter-spacing:3px">VAMOS</div>
+    <div class="ob-progress-track">
+      <div class="ob-seg done" style="width:28px"></div>
+      <div class="ob-seg done" style="width:28px"></div>
+      <div class="ob-seg active" style="width:56px"></div>
+      <span class="ob-step-counter">Step 3 of 3</span>
+    </div>
+    <div style="width:120px"></div>
+  </div>
+  <div class="ob-body-wrap">
+    <div class="ob-inner">
+      <div class="ob-eyebrow">Room preferences</div>
+      <div class="ob-title">Your room.</div>
+      <div class="ob-sub">These preferences guide your roommate assignment. You can update them anytime.</div>
+      <div class="ob-card">
+        <div class="pref-label">Room type</div>
+        <div class="pref-grid">
+          <div class="pref-card sel" onclick="selPref(this,'room')">
+            <i class="ti ti-users"></i><span>Shared room</span>
+          </div>
+          <div class="pref-card" onclick="selPref(this,'room')">
+            <i class="ti ti-user"></i><span>Private room</span>
+          </div>
+        </div>
+        <div class="pref-label" style="margin-top:14px">Bed preference</div>
+        <div class="pref-grid">
+          <div class="pref-card sel" onclick="selPref(this,'bed')">
+            <i class="ti ti-bed"></i><span>Twin beds</span>
+          </div>
+          <div class="pref-card" onclick="selPref(this,'bed')">
+            <i class="ti ti-bed"></i><span>Queen bed</span>
+          </div>
+        </div>
+      </div>
+      <div class="ob-card">
+        <div class="field"><label>Preferred roommate (optional)</label>
+          <select>
+            <option value="">No preference — let VAMOS match me</option>
+            <option>María Claudia Ruiz</option>
+            <option>Isabella Torres</option>
+            <option>Valentina Gómez</option>
+          </select>
+        </div>
+      </div>
+      <div class="ob-actions">
+        <button class="btn-ghost" onclick="go('s-ob2')"><i class="ti ti-arrow-left"></i> Back</button>
+        <button class="btn grn" onclick="go('s-dash')">Finish setup <i class="ti ti-check"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div id="s-dash" class="screen">
+  <div class="sidebar">
+    <div class="sb-logo">V</div>
+    <div class="ni active" data-label="Dashboard"><i class="ti ti-layout-dashboard"></i></div>
+    <div class="ni" data-label="Flights"><i class="ti ti-plane"></i></div>
+    <div class="ni" data-label="Hotel"><i class="ti ti-building"></i></div>
+    <div class="ni" data-label="Roommates" onclick="go('s-rooms')"><i class="ti ti-users"></i></div>
+    <div class="ni" data-label="Map"><i class="ti ti-map-pin"></i></div>
+    <div class="ni" data-label="Activities"><i class="ti ti-calendar"></i></div>
+    <div style="flex:1"></div>
+    <div class="ni" data-label="Notifications"><i class="ti ti-bell"></i></div>
+    <div class="ni" data-label="Profile"><i class="ti ti-user-circle"></i></div>
+  </div>
+  <div class="dash-main">
+    <div class="dash-topbar">
+      <div class="dash-topbar-left">
+        <div>
+          <div class="dash-greeting">Welcome back</div>
+          <div class="dash-name">Sofía Restrepo</div>
+        </div>
+      </div>
+      <div class="dash-topbar-right">
+        <div style="text-align:right">
+          <div style="font-size:10px;color:var(--txt3);letter-spacing:1.5px;text-transform:uppercase">Next departure</div>
+          <div style="font-size:13px;font-weight:600">Monday, July 14 · 22:15</div>
+        </div>
+        <div class="dash-avatar">SR</div>
+      </div>
+    </div>
+    <div class="dash-scroll">
+
+      <!-- hero -->
+      <div class="d-hero">
+        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1400&q=80" alt="París desde arriba">
+        <div class="d-hero-grad">
+          <div>
+            <div class="d-hero-badge"><i class="ti ti-plane" style="font-size:11px"></i> Upcoming trip</div>
+            <div class="d-dest">París,<br><span>Francia</span></div>
+            <div class="d-dates">July 14 – July 21, 2025 &nbsp;·&nbsp; 8 days &nbsp;·&nbsp; 18 travelers</div>
+            <div class="cd-row">
+              <div class="cd-unit"><div class="cd-n" id="cdd">--</div><div class="cd-l">days</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-unit"><div class="cd-n" id="cdh">--</div><div class="cd-l">hours</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-unit"><div class="cd-n" id="cdm">--</div><div class="cd-l">min</div></div>
+              <div class="cd-sep">:</div>
+              <div class="cd-unit"><div class="cd-n" id="cds">--</div><div class="cd-l">sec</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- stat strip -->
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <div class="stat-lbl"><i class="ti ti-plane"></i>Your flight</div>
+          <div class="stat-val">Avianca AV 205</div>
+          <div class="stat-sub">BOG → CDG &nbsp;·&nbsp; Mon Jul 14, 22:15</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-lbl"><i class="ti ti-building"></i>Hotel</div>
+          <div class="stat-val">Hôtel du Louvre</div>
+          <div class="stat-sub">Check-in Jul 15 &nbsp;·&nbsp; 7 nights</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-lbl"><i class="ti ti-users"></i>Roommate</div>
+          <div class="stat-val">María Claudia Ruiz</div>
+          <div class="stat-sub" style="color:#4DFFA0">● Confirmed</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-lbl"><i class="ti ti-world"></i>Group</div>
+          <div class="stat-val">18 travelers</div>
+          <div class="stat-sub">6 countries &nbsp;·&nbsp; 4 activities</div>
+        </div>
+      </div>
+
+      <!-- main grid -->
+      <div class="dash-grid">
+        <div class="dash-col-left">
+
+          <!-- flight card -->
+          <div class="dk-card">
+            <div class="dk-card-hd">
+              <div class="dk-card-label"><i class="ti ti-plane"></i>Flight details</div>
+              <span class="badge-org">On time</span>
+            </div>
+            <div style="font-size:15px;font-weight:600;margin-bottom:4px">Avianca AV 205 &nbsp;·&nbsp; Business Class</div>
+            <div style="font-size:12px;color:var(--txt2);margin-bottom:14px">Monday, July 14, 2025</div>
+            <div class="flight-strip">
+              <div class="fbox">
+                <div class="ft">Departs</div>
+                <div class="fv">22:15</div>
+                <div class="fs">BOG — El Dorado, Bogotá</div>
+              </div>
+              <div class="farrow"><i class="ti ti-arrow-right"></i></div>
+              <div class="fbox">
+                <div class="ft">Arrives +1</div>
+                <div class="fv">14:40</div>
+                <div class="fs">CDG — Charles de Gaulle, París</div>
+              </div>
+              <div class="fbox" style="flex:0 0 auto;min-width:120px">
+                <div class="ft">Duration</div>
+                <div class="fv" style="font-size:20px">10h 25m</div>
+                <div class="fs">1 stop</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- hotel card -->
+          <div class="dk-card">
+            <div class="dk-card-hd">
+              <div class="dk-card-label"><i class="ti ti-building"></i>Hotel</div>
+              <span class="badge-grn"><span class="badge-grn-dot"></span>Confirmed</span>
+            </div>
+            <div style="font-size:16px;font-weight:600;margin-bottom:3px">Hôtel du Louvre</div>
+            <div style="font-size:12px;color:var(--txt2);margin-bottom:14px">Place André Malraux, 1er Arrondissement, París &nbsp;·&nbsp; Twin beds, Shared room</div>
+            <div class="hotel-row">
+              <div class="hbox">
+                <div class="ht">Check-in</div>
+                <div class="hv">July 15, 2025</div>
+              </div>
+              <div class="hbox">
+                <div class="ht">Check-out</div>
+                <div class="hv">July 22, 2025</div>
+              </div>
+              <div class="hbox">
+                <div class="ht">Duration</div>
+                <div class="hv">7 nights</div>
+              </div>
+              <div class="hbox">
+                <div class="ht">Room type</div>
+                <div class="hv">Standard Twin</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- activities -->
+          <div class="dk-card">
+            <div class="dk-card-hd">
+              <div class="dk-card-label"><i class="ti ti-calendar"></i>Group activities</div>
+              <span style="font-size:12px;color:var(--pur2);cursor:pointer">View all →</span>
+            </div>
+            <div class="act-grid">
+              <div class="act-card">
+                <img src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=400&q=70" alt="Eiffel">
+                <div class="act-card-lbl">Eiffel Tower</div>
+              </div>
+              <div class="act-card">
+                <img src="https://images.unsplash.com/photo-1565799585050-22ed9c02e547?w=400&q=70" alt="Louvre">
+                <div class="act-card-lbl">Musée du Louvre</div>
+              </div>
+              <div class="act-card">
+                <img src="https://images.unsplash.com/photo-1550340499-a6c60fc8287c?w=400&q=70" alt="Seine">
+                <div class="act-card-lbl">Seine cruise</div>
+              </div>
+              <div class="act-card">
+                <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=400&q=70" alt="Versailles">
+                <div class="act-card-lbl">Versailles</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-col-right">
+          <!-- roommate -->
+          <div class="dk-card">
+            <div class="dk-card-hd">
+              <div class="dk-card-label"><i class="ti ti-users"></i>Roommate</div>
+            </div>
+            <div class="rm-row">
+              <img class="rm-av" src="https://i.pravatar.cc/100?img=47" alt="María Claudia">
+              <div>
+                <div style="font-size:15px;font-weight:600;margin-bottom:2px">María Claudia Ruiz</div>
+                <div style="font-size:12px;color:var(--txt2);margin-bottom:6px">🇨🇴 Bogotá, Colombia</div>
+                <div class="badge-grn"><span class="badge-grn-dot"></span>Confirmed</div>
+              </div>
+            </div>
+            <div class="rm-cta" onclick="go('s-rooms')">
+              <div>
+                <p>Find another roommate</p>
+                <span>3 travelers available</span>
+              </div>
+              <i class="ti ti-arrow-right" style="font-size:18px"></i>
+            </div>
+          </div>
+
+          <!-- group overview -->
+          <div class="dk-card">
+            <div class="dk-card-hd">
+              <div class="dk-card-label"><i class="ti ti-world"></i>Group overview</div>
+            </div>
+            <div class="gstat-grid">
+              <div class="gstat-box pur">
+                <div class="gstat-n pur">18</div>
+                <div class="gstat-l">Travelers</div>
+              </div>
+              <div class="gstat-box org">
+                <div class="gstat-n org">6</div>
+                <div class="gstat-l">Countries</div>
+              </div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-hd"><span>Check-in confirmed</span><span>13 / 18</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-hd"><span>Rooms assigned</span><span>9 / 9</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--org)"></div></div>
+            </div>
+            <div class="progress-row">
+              <div class="progress-hd"><span>Documents uploaded</span><span>11 / 18</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:61%;background:var(--pur2)"></div></div>
+            </div>
+          </div>
+
+          <!-- travelers -->
+          <div class="dk-card">
+            <div class="dk-card-hd">
+              <div class="dk-card-label"><i class="ti ti-user-heart"></i>The group</div>
+              <span style="font-size:12px;color:var(--txt3)">18 total</span>
+            </div>
+            <div class="avatars-row">
+              <img class="av-sm" src="https://i.pravatar.cc/40?img=47" alt="">
+              <img class="av-sm" src="https://i.pravatar.cc/40?img=32" alt="">
+              <img class="av-sm" src="https://i.pravatar.cc/40?img=44" alt="">
+              <img class="av-sm" src="https://i.pravatar.cc/40?img=12" alt="">
+              <img class="av-sm" src="https://i.pravatar.cc/40?img=29" alt="">
+              <img class="av-sm" src="https://i.pravatar.cc/40?img=56" alt="">
+              <img class="av-sm" src="https://i.pravatar.cc/40?img=61" alt="">
+              <img class="av-sm" src="https://i.pravatar.cc/40?img=19" alt="">
+              <div class="av-more">+10</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROOMMATES ══ -->
+<div id="s-rooms" class="screen">
+  <div class="sidebar">
+    <div class="sb-logo">V</div>
+    <div class="ni" onclick="go('s-dash')" data-label="Dashboard"><i class="ti ti-layout-dashboard"></i></div>
+    <div class="ni" data-label="Flights"><i class="ti ti-plane"></i></div>
+    <div class="ni" data-label="Hotel"><i class="ti ti-building"></i></div>
+    <div class="ni active" data-label="Roommates"><i class="ti ti-users"></i></div>
+    <div class="ni" data-label="Map"><i class="ti ti-map-pin"></i></div>
+    <div class="ni" data-label="Activities"><i class="ti ti-calendar"></i></div>
+    <div style="flex:1"></div>
+    <div class="ni" data-label="Notifications"><i class="ti ti-bell"></i></div>
+    <div class="ni" data-label="Profile"><i class="ti ti-user-circle"></i></div>
+  </div>
+  <div class="rooms-main">
+    <div class="rooms-topbar">
+      <button class="back-btn" onclick="go('s-dash')">
+        <i class="ti ti-arrow-left"></i> Back to dashboard
+      </button>
+      <span style="font-size:11px;color:var(--txt3);letter-spacing:2px;text-transform:uppercase">
+        3 travelers available &nbsp;·&nbsp; París, July 14–21
+      </span>
+    </div>
+    <div class="rooms-scroll">
+      <div class="rooms-header">
+        <div class="rooms-title">Find your<br><span>roommate.</span></div>
+        <div class="rooms-sub">Matched by travel style, schedule compatibility, and room preferences.</div>
+      </div>
+      <div class="tc-grid">
+
+        <div class="tc">
+          <div class="tc-img">
+            <img src="https://i.pravatar.cc/400?img=47" alt="María Claudia">
+            <div class="tc-flag">🇨🇴 Colombia</div>
+            <div class="compat-bar-abs"><div class="compat-bar-fill" style="width:94%"></div></div>
+          </div>
+          <div class="tc-body">
+            <div class="tc-name">María Claudia Ruiz</div>
+            <div class="tc-country">Bogotá, Colombia</div>
+            <div class="compat-hd">
+              <span class="compat-label">Compatibility</span>
+              <span class="compat-score">94%</span>
+            </div>
+            <div class="tags-row">
+              <span class="tag">Early riser</span>
+              <span class="tag">Non-smoker</span>
+              <span class="tag">Tidy</span>
+              <span class="tag">Reader</span>
+            </div>
+            <button class="req-btn" id="rb1" onclick="sendReq('rb1')">
+              <i class="ti ti-send"></i> Send request
+            </button>
+          </div>
+        </div>
+
+        <div class="tc">
+          <div class="tc-img">
+            <img src="https://i.pravatar.cc/400?img=32" alt="Isabella Torres">
+            <div class="tc-flag">🇲🇽 México</div>
+            <div class="compat-bar-abs"><div class="compat-bar-fill" style="width:87%"></div></div>
+          </div>
+          <div class="tc-body">
+            <div class="tc-name">Isabella Torres</div>
+            <div class="tc-country">Ciudad de México, México</div>
+            <div class="compat-hd">
+              <span class="compat-label">Compatibility</span>
+              <span class="compat-score">87%</span>
+            </div>
+            <div class="tags-row">
+              <span class="tag">Night owl</span>
+              <span class="tag">Social</span>
+              <span class="tag">Explorer</span>
+              <span class="tag">Foodie</span>
+            </div>
+            <button class="req-btn" id="rb2" onclick="sendReq('rb2')">
+              <i class="ti ti-send"></i> Send request
+            </button>
+          </div>
+        </div>
+
+        <div class="tc">
+          <div class="tc-img">
+            <img src="https://i.pravatar.cc/400?img=44" alt="Valentina Gómez">
+            <div class="tc-flag">🇦🇷 Argentina</div>
+            <div class="compat-bar-abs"><div class="compat-bar-fill" style="width:79%"></div></div>
+          </div>
+          <div class="tc-body">
+            <div class="tc-name">Valentina Gómez</div>
+            <div class="tc-country">Buenos Aires, Argentina</div>
+            <div class="compat-hd">
+              <span class="compat-label">Compatibility</span>
+              <span class="compat-score">79%</span>
+            </div>
+            <div class="tags-row">
+              <span class="tag">Flexible</span>
+              <span class="tag">Quiet</span>
+              <span class="tag">Outdoorsy</span>
+            </div>
+            <button class="req-btn" id="rb3" onclick="sendReq('rb3')">
+              <i class="ti ti-send"></i> Send request
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- modal -->
+  <div class="modal-bg" id="modal">
+    <div class="modal-box">
+      <div class="modal-icon"><i class="ti ti-check"></i></div>
+      <div class="modal-title">Request sent!</div>
+      <div class="modal-text">Your roommate request was sent successfully. You'll receive a notification once they respond.</div>
+      <button class="modal-close" onclick="closeModal()">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function selPref(el,group){
+  el.closest('.ob-card').querySelectorAll(`.pref-card[onclick*="'${group}'"]`).forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function sendReq(id){
+  var b=document.getElementById(id);
+  if(b.classList.contains('sent'))return;
+  b.classList.add('sent');
+  b.innerHTML='<i class="ti ti-check"></i> Request sent';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+}
+function pad(n){return String(n).padStart(2,'0')}
+function tick(){
+  var diff=new Date('2025-07-14T22:15:00').getTime()-Date.now();
+  if(diff<=0){['cdd','cdh','cdm','cds'].forEach(i=>{var e=document.getElementById(i);if(e)e.textContent='00'});return}
+  var d=Math.floor(diff/86400000);
+  var h=Math.floor((diff%86400000)/3600000);
+  var m=Math.floor((diff%3600000)/60000);
+  var s=Math.floor((diff%60000)/1000);
+  var e;
+  e=document.getElementById('cdd');if(e)e.textContent=pad(d);
+  e=document.getElementById('cdh');if(e)e.textContent=pad(h);
+  e=document.getElementById('cdm');if(e)e.textContent=pad(m);
+  e=document.getElementById('cds');if(e)e.textContent=pad(s);
+}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
